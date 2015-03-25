@@ -1,5 +1,5 @@
 class AnsweresController < ApplicationController
-  
+
   def show
     # @new_student_mail_id = params[:id]
   end
@@ -16,11 +16,10 @@ class AnsweresController < ApplicationController
   def create    
       @answere = Answere.new(answere_params)
       if @answere.save
-
-          if @question.created_at > 1.day.ago && 
-            # Questionmailer.welcome_email(@question,@sender).deliver_later(wait_until: 24.hours.from_now)
-            # Questionmailer.welcome_email(@question,@sender).deliver_later(wait: 120.seconds)  
-          end
+          # if @question.created_at < 1.day.ago && 
+          #   # Questionmailer.welcome_email(@question,@sender).deliver_later(wait_until: 24.hours.from_now)
+          #   # Questionmailer.welcome_email(@question,@sender).deliver_later(wait: 120.seconds)  
+          # end
           # t1 = DateTime.now
           # t2 = @question.created_at
           

@@ -1,0 +1,2 @@
+      invoke  active_record
+      remove    db/migrate/20150325122703_add_mail_send_to_question.rb

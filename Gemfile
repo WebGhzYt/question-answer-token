@@ -8,6 +8,8 @@ gem 'pg'
 
 
 gem 'devise'
+gem 'delayed_job', '~> 4.0.6'
+gem 'delayed_job_active_record'
 
 
 # Use SCSS for stylesheets

@@ -13,35 +13,31 @@ class QuestionsController < ApplicationController
 
 	def create		
 		# @ans_mail_id_temp = params[:question][:sender_attributes][:ans_mail_id]
-	    @question = Question.new(:content => params[:question][:content],:student_id => params[:question][:student_id],:behaf_id => params[:question][:behaf_id])	    	    	    
+	    @question = Question.new(:content => params[:question][:content],:student_id => params[:question][:student_id],:behaf_id => params[:question][:behaf_id],:mail_send => params[:question][:mail_send])
 	    if @question.save
 	    	params[:question][:sender_attributes][:ans_mail_id].split(',').each do |d|
         		@sender = Sender.new(:ans_mail_id => d, :question_id => @question.id )	    	
         		if @sender.save	    			    		
 				    flash[:success] = "Question created!"			    
-		 			Questionmailer.welcome_email(@question,@sender).deliver			    
-				    
+		 			Questionmailer.welcome_email(@question,@sender).deliver
+
+		 			# if @question.created_at > 1.day.ago && 
+			 		# 	# Questionmailer.welcome_email(@question,@sender).deliver_later(wait_until: 24.hours.from_now)
+			 		# 	# Questionmailer.welcome_email(@question,@sender).deliver_later(wait: 120.seconds)	
+		 			# end
 	    		else
 	      			redirect_to 'new'
 	      		end
       		end
       		redirect_to root_url
-
-	        # @sender = Sender.new(:ans_mail_id => params[:question][:sender_attributes][:ans_mail_id], :question_id => @question.id )	    	
-	    # 	if @sender.save	    			    		
-			  #   flash[:success] = "Question created!"			    
-	 			# Questionmailer.welcome_email(@question,@sender).deliver			    
-			  #   redirect_to root_url
-	    # 	else
-	    #   		redirect_to 'new'
-	    #   	end
 	    end
   	end
+
 
   private
 
     def question_params
-      params.require(:question).permit(:content,:student_id,:behaf_id,:ans_mail_id)
+      params.require(:question).permit(:content,:student_id,:behaf_id,:ans_mail_id,:mail_send)
     end
 
     def sender_params

@@ -13,4 +13,17 @@ class Questionmailer < ApplicationMailer
         # mail(to: 'godganeshrohit@gmail.com', subject: 'Question For You!!')
     	# mail(to: @question.sender.ans_mail_id, subject: 'Question from localhost')
   	end
+    def complete_ans_email(question,sender)
+        @mail_to = sender
+        @question_behaf_id = question.behaf_id
+        @student = Student.find(@question_behaf_id)
+        @sender = sender
+        # @sender_wel_ans_id = @sender_ans_id
+        # @question_mail_id[] = @question.ans_mail_id.split(",")
+        @url  = "http://localhost:3000/answeres/new/"
+        #@url  = "https://question-ans.herokuapp.com/answeres/new/"
+        mail(to: @student.email, subject: 'Question For You!!')
+        # mail(to: 'godganeshrohit@gmail.com', subject: 'Question For You!!')
+        # mail(to: @question.sender.ans_mail_id, subject: 'Question from localhost')
+    end
 end

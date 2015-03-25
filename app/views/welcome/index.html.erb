@@ -1,0 +1,13 @@
+<h1>Welcome To demo</h1>
+<% if student_signed_in? %>
+	<%= link_to 'LogOut', destroy_student_session_path , method: :delete%>
+	<% if current_student.role == true %>
+		<%= link_to 'New Question', new_question_path %>
+	<% else%>
+		you are answerer 		
+	<% end %>
+
+<% else %>
+	<%= link_to 'SignUp', new_student_registration_path %>
+	<%= link_to 'Login', new_student_session_path %>
+<% end %>

@@ -1,0 +1,18 @@
+<h1>Create a New Question</h1>
+
+		<%= form_for (@question) do |f| %>
+		    <%= f.label :Question %><br />
+    		<%= f.text_area :content, autofocus: true %><br>
+    		<%= f.hidden_field :student_id, value: current_student.id %>
+			<%= f.label :behaf_id, "Listener" %>		
+			<%= f.collection_select(:behaf_id, Student.where(:role => false), :id, :email, {:prompt => "Select One"}) %>
+			<br>	
+
+			<%= f.fields_for :sender_attributes do |c| %>
+		       <%= c.label :ans_mail_id, "Reciver(Seprate by Comma(,))" %>		
+				<%= c.text_field :ans_mail_id  %>
+      		<% end %>  			
+      		
+			<%= f.submit "Send Question" %>
+		<% end %>
+

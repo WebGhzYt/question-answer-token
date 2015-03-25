@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>
+      <h1><%= @question.content %> ?</h1>
+      <br>The Questioner:
+      <%= @question.student.email %>
+      <br>The Listener:       
+      <% @id = @question.behaf_id %>
+      <% @temp_student = Student.find(@id)%>
+      <%= @temp_student.email %>
+      <%= @question.id %>
+
+      
+      </p>
+
+      <p>
+      To login to the site, just follow this link: 
+      <%#= link_to @url, @url + @question.id.to_s %>
+      <%#= link_to @url, @url + @mail_to.ans_mail_id %>
+      <%= link_to @url, @url + @sender.token %>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<h1>Welcome,<%= @new_student_mail_id %></h1>
+	<%= form_for(@answere) do |f| %>
+		<%= f.label :Answare %>			 
+		<%= f.text_area :content, autofocus: true %><br>
+		<%= f.hidden_field :mail_id, value: @new_student_mail_id %>
+		<%= f.hidden_field :question_id, value: @question_id %>	
+		<%= f.submit "Send" %>
+	<% end %>

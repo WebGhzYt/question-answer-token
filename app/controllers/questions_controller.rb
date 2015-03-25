@@ -18,9 +18,17 @@ class QuestionsController < ApplicationController
 	    	params[:question][:sender_attributes][:ans_mail_id].split(',').each do |d|
         		@sender = Sender.new(:ans_mail_id => d, :question_id => @question.id )	    	
         		if @sender.save	    			    		
-				    flash[:success] = "Question created!"			    
-		 			Questionmailer.welcome_email(@question,@sender).deliver
+				    flash[:success] = "Question created!"	
 
+		 			Questionmailer.welcome_email(@question,@sender).deliver
+		 			# Questionmailer.complete_ans_email(@question,@sender).deliver
+
+		 			@question.delay(run_at: 2.minutes.from_now).check()
+			 			
+			 			# if @question.mail_send == false && 
+			 			# 	@question.mail_send = true
+			 			# 	Questionmailer.complete_ans_email(@question,@sender).deliver				 			
+				 		# end
 		 			# if @question.created_at > 1.day.ago && 
 			 		# 	# Questionmailer.welcome_email(@question,@sender).deliver_later(wait_until: 24.hours.from_now)
 			 		# 	# Questionmailer.welcome_email(@question,@sender).deliver_later(wait: 120.seconds)	
@@ -44,5 +52,6 @@ class QuestionsController < ApplicationController
 	  params.require(:question).permit(:ans_mail_id)    
     end
 
+   
 
 end

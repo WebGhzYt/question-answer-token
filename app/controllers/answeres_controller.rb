@@ -36,12 +36,21 @@ class AnsweresController < ApplicationController
          @question = Question.where(id: @question_id).first  
 
          if @question.mail_send == false  #need to be more work on it 
-          logger.debug "11111111111" 
-            logger.debug @question.mail_send
-            @question.update(mail_send: true)
-            # question = Question.find_by(id: @question.id)
-            # question.mail_send = true
-            Questionmailer.complete_ans_email(@question,@sender).deliver    
+
+            @sender_q_count = Sender.where(question_id: @question_id).count
+            @answere_q_count = Answere.where(question_id: @question_id).count
+
+            # logger.debug @sender_q_count
+            # logger.debug "11111111111" 
+            # logger.debug @answere_q_count                         
+            # logger.debug "222222222222" 
+            # logger.debug @question.mail_send
+            if @sender_q_count == @answere_q_count
+              @question.update(mail_send: true)
+              # question = Question.find_by(id: @question.id)
+              # question.mail_send = true
+              Questionmailer.complete_ans_email(@question,@sender).deliver    
+            end
           end
 
 

@@ -35,7 +35,7 @@ class AnsweresController < ApplicationController
          @question_id = @answere.question_id   
          @question = Question.where(id: @question_id).first  
 
-         if @question.mail_send == false     
+         if @question.mail_send == false  #need to be more work on it 
           logger.debug "11111111111" 
             logger.debug @question.mail_send
             @question.update(mail_send: true)

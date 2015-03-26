@@ -23,8 +23,8 @@ class QuestionsController < ApplicationController
 		 			Questionmailer.welcome_email(@question,@sender).deliver
 		 			# Questionmailer.complete_ans_email(@question,@sender).deliver
 
-		 			@question.delay(run_at: 2.minutes.from_now).check()
-			 			
+		 			@question.delay(run_at: 1.minutes.from_now).check(@question,@sender)
+			 			# 24.hours
 			 			# if @question.mail_send == false && 
 			 			# 	@question.mail_send = true
 			 			# 	Questionmailer.complete_ans_email(@question,@sender).deliver				 			

@@ -10,8 +10,8 @@
 
       <p>
       To login to the site, just follow this link: 
-      <%#= link_to @url, @url + @question.id.to_s %>
-      <%#= link_to @url, @url + @mail_to.ans_mail_id %>
+      <%#= link_to @url, @url + @question.id %>
+      <%= @question.to_s %>
       <%= link_to @url, @url %>
     </p>
     <p>Thanks for joining and have a great day!</p>

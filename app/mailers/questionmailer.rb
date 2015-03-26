@@ -20,9 +20,9 @@ class Questionmailer < ApplicationMailer
         # @sender = sender
         # @sender_wel_ans_id = @sender_ans_id
         # @question_mail_id[] = @question.ans_mail_id.split(",")
-        @url  = "http://localhost:3000/"
+        @url  = "http://localhost:3000/students/sign_in"        
         #@url  = "https://question-ans.herokuapp.com/answeres/new/"
-        mail(to: @student.email, subject: 'Question For You!!')
+        mail(to: @student.email, subject: 'Time Complete or Answare is Complete!!')
         # mail(to: 'godganeshrohit@gmail.com', subject: 'Question For You!!')
         # mail(to: @question.sender.ans_mail_id, subject: 'Question from localhost')
     end

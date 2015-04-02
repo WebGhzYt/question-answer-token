@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-
+gem 'ahoy_matey'
 
 gem 'devise'
 gem 'delayed_job', '~> 4.0.6'

@@ -4,7 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
-
+  before_filter :count_hits
+	def count_hits
+		@hit = PageHit.find_by_url(request.url) || PageHit.create(:url => request.url)
+		PageHit.increment_counter(:count, @hit.id)
+	end
     protected
 
         def configure_permitted_parameters
